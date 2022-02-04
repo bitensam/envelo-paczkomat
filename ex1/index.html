@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        :root {
+            --bg-color: red;
+        }
+
+        body {
+            background-color: var(--bg-color); /*was backgroundColor (camel Case is not used in html)*/
+            font-family: Lato, sans-serif; /* omitted generic name, was font-family: Lato */
+        }
+
+        div {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<main> <!--add main tag for better semantics-->
+    <h1>Hall of fame</h1> <!--remove aria-main="true"-->
+    <div class="hero">  <!--remove className attribute which is used for React, add attribute class -->
+        <h2>Hero count: <span id="hero-count"></span></h2>
+        <!--remove javascript expression and add span with id="hero-count"  -->
+    </div> <!-- remove the double closure sign ">" -->
+    <button id="btn-power-up">Power Up Hero</button>
+</main>
+<script src="heroes.js"></script>  <!-- Add link to heroes.js file-->
+</body>
+</html>

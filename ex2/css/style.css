@@ -1,0 +1,23 @@
+body {
+  background-color: whitesmoke;
+}
+.header-title {
+  text-transform: uppercase;
+  font-family: "Kanit", sans-serif;
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+  color: #ee1c1c;
+}
+
+.header-text {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  text-align: center;
+  color: #000272
+}
+
+.header-text.bold {
+  font-weight: 600;
+}
