@@ -1,41 +1,28 @@
+import { select, database } from "./settings.js";
+
 // SELECTORS
 
-const modalElement = document.getElementById("modal");
-const modalTimeElement = document.getElementById("modal_time");
-const mainElement = document.getElementById("main_app");
-const formElement = document.querySelector(".form-grid");
-const errorMsgPhoneElement = document.querySelector(".error-msg-phone");
-const errorMsgCodeElement = document.querySelector(".error-msg-code");
-const inputPhoneElement = document.getElementById("input_phone");
-const inputCodeElement = document.getElementById("input_code");
-const btnModalFinish = document.querySelector(".btn-finish");
-const btnModalRestart = document.querySelector(".btn-restart");
-const btnFormSubmit = document.querySelector(".btn-submit");
+const modalElement = document.getElementById(select.modal.modalWrapper);
+const modalTimeElement = document.getElementById(select.modal.modalTime);
+const btnModalFinish = document.querySelector(select.modal.btnFinish);
+const btnModalRestart = document.querySelector(select.modal.btnRestart);
 
-// global
+const mainWrapper = document.getElementById(select.main.mainWrapper);
+
+const formWrapper = document.querySelector(select.form.formWrapper);
+const inputPhoneElement = document.getElementById(select.form.inputPhone);
+const inputCodeElement = document.getElementById(select.form.inputCode);
+const btnFormSubmit = document.querySelector(select.form.btnSubmit);
+const errorMsgPhoneElement = document.querySelector(select.form.errorMsgPhone);
+const errorMsgCodeElement = document.querySelector(select.form.errorMsgCode);
+
+// GLOBAL VARIABLES
 
 let timerStarted = false;
 let timeAmount = 0;
 let timerCount;
 let inputPhoneNumber = "";
 let inputCode = "";
-
-// database
-
-const DATA_BASE = [
-  {
-    userPhoneNumber: "111111111",
-    userCode: "1111",
-  },
-  {
-    userPhoneNumber: "222222222",
-    userCode: "2222",
-  },
-  {
-    userPhoneNumber: "123456789",
-    userCode: "1234",
-  },
-];
 
 //Init App
 const appInit = () => {
@@ -49,8 +36,8 @@ const appInit = () => {
 //Submit button handler
 const handleSubmit = (e) => {
   e.preventDefault();
-  if (!formElement.classList.contains("active")) {
-    formElement.classList.add("active");
+  if (!formWrapper.classList.contains("active")) {
+    formWrapper.classList.add("active");
     timerStarted = !timerStarted;
     timerStart();
   } else {
@@ -60,21 +47,19 @@ const handleSubmit = (e) => {
 
 //Inputs handlers
 const handleChangePhoneNumber = (e) => {
-  console.log("phone:", e.target.value);
-  return (inputPhoneNumber = e.target.value);
+  inputPhoneNumber = e.target.value;
 };
 
 const handleChangeCode = (e) => {
-  console.log("code:", e.target.value);
-  return (inputCode = e.target.value);
+  inputCode = e.target.value;
 };
 
 //Validate
 
 const isInDatabase = (phoneNumber, code) => {
-  DATA_BASE.forEach((record) => {
+  database.forEach((record) => {
     if (record.userPhoneNumber === phoneNumber && record.userCode === code) {
-      mainElement.classList.remove("active");
+      mainWrapper.classList.remove("active");
       timerStop();
       modalElement.classList.add("active");
     } else {
@@ -122,11 +107,6 @@ const validate = (phoneNumber, code) => {
   ) {
     isInDatabase(phoneNumber, code);
   }
-  //   errorMsgPhoneElement.classList.remove("active");
-  //   errorMsgCodeElement.classList.remove("active");
-  //   timerStop();
-  //   modalElement.classList.add("active");
-  // }
 };
 
 //Timer
@@ -158,15 +138,15 @@ const clearUp = () => {
 const handleFinish = (e) => {
   e.preventDefault();
   modalElement.classList.remove("active");
-  mainElement.classList.add("active");
-  formElement.classList.remove("active");
+  mainWrapper.classList.add("active");
+  formWrapper.classList.remove("active");
   clearUp();
 };
 //Restart button handler
 const handleRestart = (e) => {
   e.preventDefault();
   modalElement.classList.remove("active");
-  mainElement.classList.add("active");
+  mainWrapper.classList.add("active");
   clearUp();
   timerStart();
 };
