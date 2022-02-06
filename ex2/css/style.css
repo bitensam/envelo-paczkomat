@@ -115,7 +115,7 @@ label {
   margin-top: 3rem;
 }
 
-.section {
+.container {
   padding: 4rem 0;
   width: 90vw;
   margin: 0 auto;
@@ -123,13 +123,9 @@ label {
 }
 
 @media screen and (min-width: 992px) {
-  .section {
+  .container {
     width: 95vw;
   }
-}
-
-.hidden {
-  display: none;
 }
 
 /*HEADER*/
@@ -155,14 +151,16 @@ label {
   width: 90vw;
   max-width: 50rem;
 }
-
 .form-grid {
+  display: none;
+}
+.form-grid.active {
   display: grid;
   grid-template-columns: 1fr;
 }
 
 @media screen and (min-width: 820px){
-  .form-grid {
+  .form-grid.active {
     grid-template-columns: 1fr 1fr;
     column-gap: 3rem;
   }
@@ -218,7 +216,6 @@ label {
 
 .modal {
   display: none;
-
 }
 
 .modal.active {
