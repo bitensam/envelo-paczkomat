@@ -48,6 +48,7 @@ h1,h2 {
 
 h1 {
   font-size: 3rem;
+  margin-bottom: 4rem;
 }
 
 h2 {
@@ -128,6 +129,18 @@ label {
   }
 }
 
+.main.active, .modal.active {
+  display: grid;
+  place-items: center;
+  height: 90vh;
+}
+
+/* MAIN */
+
+.main{
+  display: none;
+}
+
 /*HEADER*/
 
 .header-text {
@@ -197,9 +210,14 @@ label {
   letter-spacing: var(--spacing);
 
 }
-
-.form-control-error {
-  color: var(--clr-primary)
+.form-error-msg{
+  display: none;
+}
+.form-error-msg.active{
+  display: block;
+  margin-top: 1.5rem;
+  color: var(--clr-primary);
+  font-weight: 600;
 }
 
 .btn-submit {
@@ -216,12 +234,6 @@ label {
 
 .modal {
   display: none;
-}
-
-.modal.active {
-  display: grid;
-  place-items: center;
-  padding: 5rem 0;
 }
 
 .modal-wrapper {

@@ -23,7 +23,7 @@
         </div>
     </div>
 </div>
-<main>
+<main id="main_app" class="main active">
     <div class="container">
         <header class="header">
             <h1 class="header-title">Envelo</h1>
@@ -34,15 +34,17 @@
             <div class="package-form-wrapper">
                 <form>
                     <div class="form-grid">
-                        <div class="input-group input-group-phone">
+                        <div class="input-group">
                             <label for='input_phone'>Numer telefonu</label>
                             <input id='input_phone' class="form-control" type="text" placeholder="wpisz numer"
                                    maxlength="9"/>
+                            <p class="form-error-msg error-msg-phone"></p>
                         </div>
-                        <div class="input-group input-group-code">
+                        <div class="input-group">
                             <label for='input_code'>Kod odbioru</label>
                             <input id='input_code' class="form-control" type="text" placeholder="wpisz kod"
                                    maxlength="4"/>
+                            <p class="form-error-msg error-msg-code"></p>
                         </div>
                     </div>
                     <div>
