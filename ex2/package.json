@@ -2,7 +2,7 @@
   "name": "task-runner",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "init-project": "npm install && npm-run-all init:*",
     "init:dirs": "mkdirp sass css vendor images js",
@@ -14,7 +14,7 @@
     "build:autoprefixer": "postcss css/*.css --use autoprefixer -d css",
     "build-dev": "npm-run-all build:*",
     "watch": "npm-run-all build:* build-dev -p watch:*",
-    "watch:browsersync": "browser-sync start --server --files \"css/*.css\" \"*.html\""
+    "watch:browsersync": "browser-sync start --server --files \\\\\\\"css/*.css\\\\\\\" \\\\\\\"*.html\\\\\\\""
   },
   "keywords": [],
   "author": "",

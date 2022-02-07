@@ -1,4 +1,4 @@
-import { select, database } from "./settings.js";
+import { select, database } from './settings.js';
 
 // SELECTORS
 
@@ -21,23 +21,23 @@ const errorMsgCodeElement = document.querySelector(select.form.errorMsgCode);
 let timerStarted = false;
 let timeAmount = 0;
 let timerCount;
-let inputPhoneNumber = "";
-let inputCode = "";
+let inputPhoneNumber = '';
+let inputCode = '';
 
 //Init App
 const appInit = () => {
-  btnFormSubmit.addEventListener("click", handleSubmit);
-  btnModalFinish.addEventListener("click", handleFinish);
-  btnModalRestart.addEventListener("click", handleRestart);
-  inputPhoneElement.addEventListener("input", handleChangePhoneNumber);
-  inputCodeElement.addEventListener("input", handleChangeCode);
+  btnFormSubmit.addEventListener('click', handleSubmit);
+  btnModalFinish.addEventListener('click', handleFinish);
+  btnModalRestart.addEventListener('click', handleRestart);
+  inputPhoneElement.addEventListener('input', handleChangePhoneNumber);
+  inputCodeElement.addEventListener('input', handleChangeCode);
 };
 
 //Submit button handler
 const handleSubmit = (e) => {
   e.preventDefault();
-  if (!formWrapper.classList.contains("active")) {
-    formWrapper.classList.add("active");
+  if (!formWrapper.classList.contains('active')) {
+    formWrapper.classList.add('active');
     timerStarted = !timerStarted;
     timerStart();
   } else {
@@ -59,13 +59,13 @@ const handleChangeCode = (e) => {
 const isInDatabase = (phoneNumber, code) => {
   database.forEach((record) => {
     if (record.userPhoneNumber === phoneNumber && record.userCode === code) {
-      mainWrapper.classList.remove("active");
+      mainWrapper.classList.remove('active');
       timerStop();
-      modalElement.classList.add("active");
+      modalElement.classList.add('active');
     } else {
-      errorMsgPhoneElement.classList.add("active");
-      errorMsgCodeElement.classList.add("active");
-      const errorNotInDatabase = "Podanej kombinacji nie znaleziono w bazie";
+      errorMsgPhoneElement.classList.add('active');
+      errorMsgCodeElement.classList.add('active');
+      const errorNotInDatabase = 'Podanej kombinacji nie znaleziono w bazie';
       errorMsgPhoneElement.innerText = errorNotInDatabase;
       errorMsgCodeElement.innerText = errorNotInDatabase;
     }
@@ -76,27 +76,27 @@ const validate = (phoneNumber, code) => {
   let errors = {};
 
   if (phoneNumber.length !== 9) {
-    errors.phoneNumber = "Wprowadź 9-cyfrowy numer telefonu";
-    errorMsgPhoneElement.classList.add("active");
+    errors.phoneNumber = 'Wprowadź 9-cyfrowy numer telefonu';
+    errorMsgPhoneElement.classList.add('active');
     errorMsgPhoneElement.innerText = errors.phoneNumber;
   } else if (isNaN(+phoneNumber)) {
-    errorMsgPhoneElement.classList.add("active");
-    errors.phoneNumber = "Numer musi składać się z cyfr";
+    errorMsgPhoneElement.classList.add('active');
+    errors.phoneNumber = 'Numer musi składać się z cyfr';
     errorMsgPhoneElement.innerText = errors.phoneNumber;
   } else {
-    errorMsgPhoneElement.classList.remove("active");
+    errorMsgPhoneElement.classList.remove('active');
   }
 
   if (code.length !== 4) {
-    errors.code = "Wprowadź 4-cyfrowy kod odbioru";
-    errorMsgCodeElement.classList.add("active");
+    errors.code = 'Wprowadź 4-cyfrowy kod odbioru';
+    errorMsgCodeElement.classList.add('active');
     errorMsgCodeElement.innerText = errors.code;
   } else if (isNaN(+code)) {
-    errorMsgCodeElement.classList.add("active");
-    errors.code = "Kod musi składać się z cyfr";
+    errorMsgCodeElement.classList.add('active');
+    errors.code = 'Kod musi składać się z cyfr';
     errorMsgCodeElement.innerText = errors.code;
   } else {
-    errorMsgCodeElement.classList.remove("active");
+    errorMsgCodeElement.classList.remove('active');
   }
 
   if (
@@ -111,6 +111,7 @@ const validate = (phoneNumber, code) => {
 
 //Timer
 const timerStart = () => {
+  // eslint-disable-next-line no-constant-condition
   if ((timerStarted = true)) {
     timeAmount = 0;
     timerCount = setInterval(() => {
@@ -126,27 +127,27 @@ const timerStop = () => {
 };
 
 const clearUp = () => {
-  inputPhoneElement.value = "";
-  inputCodeElement.value = "";
-  errorMsgCodeElement.innerText = "";
-  errorMsgPhoneElement.innerText = "";
-  errorMsgPhoneElement.classList.remove("active");
-  errorMsgCodeElement.classList.remove("active");
+  inputPhoneElement.value = '';
+  inputCodeElement.value = '';
+  errorMsgCodeElement.innerText = '';
+  errorMsgPhoneElement.innerText = '';
+  errorMsgPhoneElement.classList.remove('active');
+  errorMsgCodeElement.classList.remove('active');
 };
 
 //Finish button handler
 const handleFinish = (e) => {
   e.preventDefault();
-  modalElement.classList.remove("active");
-  mainWrapper.classList.add("active");
-  formWrapper.classList.remove("active");
+  modalElement.classList.remove('active');
+  mainWrapper.classList.add('active');
+  formWrapper.classList.remove('active');
   clearUp();
 };
 //Restart button handler
 const handleRestart = (e) => {
   e.preventDefault();
-  modalElement.classList.remove("active");
-  mainWrapper.classList.add("active");
+  modalElement.classList.remove('active');
+  mainWrapper.classList.add('active');
   clearUp();
   timerStart();
 };

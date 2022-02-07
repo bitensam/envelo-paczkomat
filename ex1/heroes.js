@@ -5,6 +5,8 @@ const btnPowerUp = document.getElementById("btn-power-up");
 const heroInput = document.getElementById("input-hero");
 const btnAddHero = document.getElementById("btn-add-hero");
 const heroesElement = document.createElement("div");
+const heroesContainer = document.querySelector("main");
+const heroCountContainer = document.getElementById("hero-count");
 
 class Hero {
   constructor(name) {
@@ -27,17 +29,14 @@ class Hero {
 }
 
 const printHallOfFame = () => {
-  const heroesContainer = document.querySelector("main");
-  const heroCountContainer = document.getElementById("hero-count");
-
-  heroCountContainer.innerText = heroCount.toString();
-
   if (heroes.length <= 1) {
     heroesElement.innerHTML = `<p class="hero-element">${heroes[0].name}, ${heroes[0].powerCount}</p>`;
   } else {
     const lastIndex = heroes.length - 1;
     heroesElement.innerHTML = `<p class="hero-element">${heroes[lastIndex].name}, ${heroes[lastIndex].powerCount}</p>`;
   }
+
+  heroCountContainer.innerText = heroCount.toString();
 
   heroesContainer.appendChild(heroesElement);
 };
@@ -51,6 +50,5 @@ const getHero = (name) => {
   }
   btnPowerUp.addEventListener("click", () => {
     newHero.train();
-    console.log(newHero);
   });
 };
